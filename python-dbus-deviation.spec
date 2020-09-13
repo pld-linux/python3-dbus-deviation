@@ -33,6 +33,8 @@ BuildRequires:	python-lxml
 BuildRequires:	python3-Sphinx
 BuildRequires:	python3-modules >= 1:3.2
 BuildRequires:	python3-setuptools
+BuildRequires:	python3-setuptools_git >= 0.3
+BuildRequires:	python3-setuptools_pep8
 %if %{with tests}
 BuildRequires:	python3-lxml
 %endif
