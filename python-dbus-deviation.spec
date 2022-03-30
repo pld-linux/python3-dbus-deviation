@@ -11,6 +11,7 @@
 Summary:	Parse D-Bus introspection XML and process it in varous ways
 Summary(pl.UTF-8):	Analiza opisów XML protokołu D-Bus i przetwarzanie na różne sposoby
 Name:		python-dbus-deviation
+# keep 0.6.0 for python2 support
 Version:	0.6.0
 Release:	5
 License:	LGPL v2.1+
