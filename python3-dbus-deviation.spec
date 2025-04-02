@@ -13,6 +13,7 @@ Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/dbus-deviation/
 Source0:	https://files.pythonhosted.org/packages/source/d/dbus-deviation/dbus-deviation-%{version}.tar.gz
 # Source0-md5:	649e1024a024242bfc38a5e1dfec69b4
+Patch0:		dbus-deviation-tests.patch
 URL:		https://pypi.org/project/dbus-deviation/
 BuildRequires:	python3-Sphinx
 BuildRequires:	python3-modules >= 1:3.2
@@ -60,11 +61,18 @@ Dokumentacja API modułu Pythona dbus-deviation.
 
 %prep
 %setup -q -n dbus-deviation-%{version}
+%patch -P0 -p1
 
 %build
-%py3_build %{?with_tests:test}
+%py3_build
+
+%if %{with tests}
+%{__python3} -m unittest discover -s dbusapi
+%{__python3} -m unittest discover -s dbusdeviation
+%endif
 
 %if %{with doc}
+PYTHONPATH=$(pwd) \
 sphinx-build-3 -b html docs docs/build/html
 %endif
 

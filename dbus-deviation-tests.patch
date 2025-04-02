@@ -1,0 +1,62 @@
+--- dbus-deviation-0.6.1/dbusapi/tests/test_interfaceparser.py.orig	2017-01-10 10:18:04.000000000 +0100
++++ dbus-deviation-0.6.1/dbusapi/tests/test_interfaceparser.py	2025-04-02 17:41:21.325562540 +0200
+@@ -459,13 +459,13 @@ class TestParserNormal(unittest.TestCase
+         (parser, interfaces, _) = _test_parser(xml)
+         interface = interfaces.get('I.I')
+         self.assertIsNotNone(interface)
+-        self.assertEquals(interface.comment, "Please consider me")
++        self.assertEqual(interface.comment, "Please consider me")
+         meth = interface.methods.get('foo')
+         self.assertIsNotNone(meth)
+-        self.assertEquals(meth.comment, "Notice me too")
+-        self.assertEquals(len(meth.arguments), 1)
++        self.assertEqual(meth.comment, "Notice me too")
++        self.assertEqual(len(meth.arguments), 1)
+         arg = meth.arguments[0]
+-        self.assertEquals(arg.comment, "And me!")
++        self.assertEqual(arg.comment, "And me!")
+ 
+     def test_line_numbers(self):
+         """Test that line numbers are correctly computed"""
+@@ -498,7 +498,7 @@ class TestParserNormal(unittest.TestCase
+         self.assertIsNotNone(meth)
+         self.assertEqual(meth.line_number, 9)
+         self.assertEqual(meth.comment_line_number, 6)
+-        self.assertEquals(len(meth.arguments), 2)
++        self.assertEqual(len(meth.arguments), 2)
+         arg = meth.arguments[0]
+         self.assertEqual(arg.line_number, 13)
+         self.assertEqual(arg.comment_line_number, 10)
+@@ -517,7 +517,7 @@ class TestParserNormal(unittest.TestCase
+         (parser, interfaces, _) = _test_parser(xml)
+         interface = interfaces.get('I.I')
+         self.assertIsNotNone(interface)
+-        self.assertEquals(interface.comment, "bla")
++        self.assertEqual(interface.comment, "bla")
+ 
+     def test_multiline_comments(self):
+         xml = ("<node xmlns:tp='"
+@@ -534,7 +534,7 @@ class TestParserNormal(unittest.TestCase
+         (parser, interfaces, _) = _test_parser(xml)
+         interface = interfaces.get('I.I')
+         self.assertIsNotNone(interface)
+-        self.assertEquals(interface.comment,
++        self.assertEqual(interface.comment,
+                           "    Please consider that\n"
+                           "    multiline comment")
+ 
+--- dbus-deviation-0.6.1/dbusapi/tests/test_ast.py.orig	2017-01-10 10:18:04.000000000 +0100
++++ dbus-deviation-0.6.1/dbusapi/tests/test_ast.py	2025-04-02 17:41:24.062565176 +0200
+@@ -227,9 +227,9 @@ class TestAstTraversal(unittest.TestCase
+         })
+ 
+         children = [node for node in iface.walk()]
+-        self.assertEquals(len(children), 2)
+-        self.assertEquals(children[0], method)
+-        self.assertEquals(children[1], annotation)
++        self.assertEqual(len(children), 2)
++        self.assertEqual(children[0], method)
++        self.assertEqual(children[1], annotation)
+ 
+ 
+ class TestAstSignatures(unittest.TestCase):
