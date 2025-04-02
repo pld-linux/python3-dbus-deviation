@@ -62,7 +62,11 @@ Dokumentacja API modułu Pythona dbus-deviation.
 %setup -q -n dbus-deviation-%{version}
 
 %build
-%py3_build %{?with_tests:test} %{?with_doc:build_sphinx}
+%py3_build %{?with_tests:test}
+
+%if %{with doc}
+sphinx-build-3 -b html docs docs/build/html
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -86,5 +90,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with doc}
 %files apidocs
 %defattr(644,root,root,755)
-%doc build-3/sphinx/html/{_modules,_static,*.html,*.js}
+%doc docs/build/html/{_modules,_static,*.html,*.js}
 %endif
